@@ -10,7 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="824d0ce5-50a8-4c60-9e36-97d7a7200f28" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Stamina_jar/Stamina.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/civlegacy/stamina/Listeners/PlayerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/civlegacy/stamina/Listeners/PlayerListener.java" afterDir="false" />
     </list>

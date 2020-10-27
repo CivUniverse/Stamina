@@ -43,6 +43,7 @@ public class PlayerListener implements Listener {
         PlayerInventory playerInventory = event.getPlayer().getInventory();
 
         if(event.getItem().isSimilar(stamina)) {
+            int foodlevel = player.getFoodLevel();
             manager.givePlayerStamina(event.getPlayer(), 1);
             event.getPlayer().sendMessage(ChatColor.AQUA + "You now have " + ChatColor.GREEN + manager.getPlayerStamina(event.getPlayer()) + ChatColor.AQUA + " stamina.");
             Bukkit.getScheduler().runTaskLater(Stamina.getPlugin(), new Runnable() {
@@ -52,8 +53,9 @@ public class PlayerListener implements Listener {
                     for(PotionEffect potionEffect : potionEffects) {
                         player.removePotionEffect(potionEffect.getType());
                     }
+                    player.setFoodLevel(foodlevel);
                 }
-            }, 10);
+            }, 1);
         }
     }
 }
