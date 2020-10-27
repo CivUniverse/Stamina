@@ -2,17 +2,28 @@ package com.civlegacy.stamina.Listeners;
 
 import com.civlegacy.stamina.Stamina;
 import com.civlegacy.stamina.StaminaManager;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class PlayerListener implements Listener {
 
-    StaminaManager manager = Stamina.getStaminaManager();
+    static StaminaManager manager = Stamina.getStaminaManager();
+
+    @EventHandler
+    public void playerFirstLogin(PlayerLoginEvent event) {
+        if(!event.getPlayer().hasPlayedBefore()) {
+            OfflinePlayer player = Bukkit.getPlayer(event.getPlayer().getUniqueId());
+            manager.createPlayerAccount(player);
+        }
+    }
 
     @EventHandler
     public void onPlayerEat(PlayerItemConsumeEvent event) {

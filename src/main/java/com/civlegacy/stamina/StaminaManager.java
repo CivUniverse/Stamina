@@ -5,7 +5,7 @@ import org.bukkit.OfflinePlayer;
 import java.util.HashMap;
 
 public class StaminaManager {
-    HashMap<OfflinePlayer, Integer> staminaManager;
+    private HashMap<OfflinePlayer, Integer> staminaManager = new HashMap<OfflinePlayer, Integer>();
 
     public Integer getPlayerStamina(OfflinePlayer offlinePlayer) {
         int stam = staminaManager.get(offlinePlayer);
@@ -29,6 +29,10 @@ public class StaminaManager {
         int stam = staminaManager.get(offlinePlayer);
         int loss = stam - integer;
         staminaManager.replace(offlinePlayer, loss);
+    }
+
+    public void createPlayerAccount(OfflinePlayer offlinePlayer) {
+        staminaManager.put(offlinePlayer, 2);
     }
 
 
