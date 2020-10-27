@@ -37,14 +37,8 @@ public class CommandHandler implements CommandExecutor {
             commandSender.sendMessage(ChatColor.AQUA + "You have " + ChatColor.GREEN + stam + ChatColor.AQUA + " stamina.");
             return true;
         } else if (args.length == 1) {
-            if (args[0].equalsIgnoreCase("create")) {
-                manager.createPlayerAccount(player);
-                return true;
-            }
             if (args[0].equalsIgnoreCase("claim")) {
-                int currentTime = (int) date.getTime();
-                boolean canClaim = claimMan.checkClaim(player, currentTime);
-                if (canClaim = true) {
+                if (claimMan.checkClaim(player, (int) date.getTime())) {
                     commandSender.sendMessage(ChatColor.AQUA + "You successfully claimed your Stamina for today.");
                     manager.givePlayerStamina(player, 2);
                 } else {

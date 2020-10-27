@@ -10,12 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="824d0ce5-50a8-4c60-9e36-97d7a7200f28" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/civlegacy/stamina/ClaimManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Stamina_jar/Stamina.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/civlegacy/stamina/ClaimManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/civlegacy/stamina/ClaimManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/civlegacy/stamina/Command/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/civlegacy/stamina/Command/CommandHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/civlegacy/stamina/Listeners/PlayerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/civlegacy/stamina/Listeners/PlayerListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/civlegacy/stamina/Stamina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/civlegacy/stamina/Stamina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/civlegacy/stamina/StaminaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/civlegacy/stamina/StaminaManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/civlegacy/stamina/ClaimManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/civlegacy/stamina/ClaimManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/civlegacy/stamina/Command/CommandHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/civlegacy/stamina/Command/CommandHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/civlegacy/stamina/Stamina.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/civlegacy/stamina/Stamina.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/civlegacy/stamina/StaminaManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/civlegacy/stamina/StaminaManager.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
