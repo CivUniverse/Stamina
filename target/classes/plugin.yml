@@ -1,0 +1,9 @@
+name: Stamina
+main: com.civlegacy.stamina.Stamina
+description: Stamina management plugin
+version: 1.0-SNAPSHOT
+commands:
+  stamina:
+    description: allows you to withdraw/view stamina
+    usage: /stamina <amount>
+    aliases: /s
