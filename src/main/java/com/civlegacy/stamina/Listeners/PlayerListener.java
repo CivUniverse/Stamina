@@ -11,11 +11,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class PlayerListener implements Listener {
 
-    static StaminaManager manager = Stamina.getStaminaManager();
+    StaminaManager manager = Stamina.getStaminaManager();
 
     @EventHandler
     public void playerFirstLogin(PlayerLoginEvent event) {
@@ -34,12 +35,11 @@ public class PlayerListener implements Listener {
         ItemMeta stamMeta = stamina.getItemMeta();
         stamMeta.setDisplayName("Stamina");
         stamina.setItemMeta(stamMeta);
+        PlayerInventory playerInventory = event.getPlayer().getInventory();
 
         if(event.getItem().isSimilar(stamina)) {
-            manager.givePlayerStamina(event.getPlayer(), event.getItem().getAmount());
-            event.setItem(new ItemStack(Material.AIR));
+            manager.givePlayerStamina(event.getPlayer(), 1);
             event.getPlayer().sendMessage(ChatColor.AQUA + "You now have " + ChatColor.GREEN + manager.getPlayerStamina(event.getPlayer()) + ChatColor.AQUA + " stamina.");
-            event.setCancelled(true);
         }
     }
 }

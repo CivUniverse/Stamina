@@ -1,5 +1,6 @@
 package com.civlegacy.stamina.Command;
 
+import com.civlegacy.stamina.ClaimManager;
 import com.civlegacy.stamina.Stamina;
 import com.civlegacy.stamina.StaminaManager;
 import org.bukkit.Bukkit;
@@ -14,8 +15,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Date;
+
 public class CommandHandler implements CommandExecutor {
     StaminaManager manager = Stamina.getStaminaManager();
+    ClaimManager claimMan = Stamina.getClaimManager();
+
+    Date date = new Date();
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
@@ -24,17 +30,30 @@ public class CommandHandler implements CommandExecutor {
             commandSender.sendMessage(ChatColor.RED + "no.");
             return false;
         }
-
         OfflinePlayer player = Bukkit.getOfflinePlayer(((Player) commandSender).getUniqueId());
 
         if (args.length == 0) {
-            int stam = manager.getPlayerStamina(player);
+            int stam = Stamina.getStaminaManager().getPlayerStamina(player);
             commandSender.sendMessage(ChatColor.AQUA + "You have " + ChatColor.GREEN + stam + ChatColor.AQUA + " stamina.");
             return true;
         } else if (args.length == 1) {
-            int stam = Integer.parseInt(args[0]);
+            if (args[0].equalsIgnoreCase("create")) {
+                manager.createPlayerAccount(player);
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("claim")) {
+                int currentTime = (int) date.getTime();
+                boolean canClaim = claimMan.checkClaim(player, currentTime);
+                if (canClaim = true) {
+                    commandSender.sendMessage(ChatColor.AQUA + "You successfully claimed your Stamina for today.");
+                    manager.givePlayerStamina(player, 2);
+                } else {
+                    commandSender.sendMessage(ChatColor.RED + "You already claimed your stamina for today.");
+                }
+                return true;
+            }
 
-            if (stam == 0) {
+            if (Integer.parseInt(args[0]) == 0) {
                 commandSender.sendMessage(ChatColor.RED + "You need to put a number in...");
                 return true;
             }
@@ -45,7 +64,7 @@ public class CommandHandler implements CommandExecutor {
                 return true;
             }
 
-            if (stam > bal) {
+            if (Integer.parseInt(args[0]) > bal) {
                 commandSender.sendMessage(ChatColor.RED + "You don't have that much Stamina in your account.");
                 return true;
             }
@@ -54,21 +73,23 @@ public class CommandHandler implements CommandExecutor {
             //Stam representation.******
             ItemStack stamina = new ItemStack(Material.GOLDEN_APPLE);
             stamina.setDurability((short) 1);
-            stamina.setAmount(stam);
+            stamina.setAmount(Integer.parseInt(args[0]));
             ItemMeta stamMeta = stamina.getItemMeta();
             stamMeta.setDisplayName("Stamina");
             stamina.setItemMeta(stamMeta);
             //***************************
 
             playerInventory.addItem(stamina);
-            manager.removePlayerStamina(player, stam);
+            manager.removePlayerStamina(player, Integer.parseInt(args[0]));
             commandSender.sendMessage(ChatColor.AQUA + "You have " + ChatColor.GREEN + manager.getPlayerStamina(player) + ChatColor.AQUA + " stamina.");
-        } else if (args.length == 2) {
+            return true;
+        } else if (args.length == 3) {
             if (args[0].equalsIgnoreCase("give") && commandSender.isOp()) {
                 int give = Integer.parseInt(args[2]);
                 Player giveplayer = Bukkit.getPlayer(args[1]);
                 if (giveplayer == null) {
                     commandSender.sendMessage("no player found");
+                    return true;
                 }
                 manager.givePlayerStamina(giveplayer, give);
                 commandSender.sendMessage("Gave " + giveplayer + " " + give + " stamina.");
@@ -80,9 +101,10 @@ public class CommandHandler implements CommandExecutor {
                 Player remplayer = Bukkit.getPlayer(args[1]);
                 if (remplayer == null) {
                     commandSender.sendMessage("no player found");
+                    return true;
                 }
                 manager.removePlayerStamina(remplayer, remove);
-                commandSender.sendMessage("Gave " + remplayer + " " + remove + " stamina.");
+                commandSender.sendMessage("Removed " + remplayer + " " + remove + " stamina.");
                 return true;
             }
         }
