@@ -41,6 +41,7 @@ public class CommandHandler implements CommandExecutor {
                 if (claimMan.checkClaim(player, (int) date.getTime())) {
                     commandSender.sendMessage(ChatColor.AQUA + "You successfully claimed your Stamina for today.");
                     manager.givePlayerStamina(player, 2);
+                    claimMan.recordClaim(player, (int) date.getTime());
                 } else {
                     commandSender.sendMessage(ChatColor.RED + "You already claimed your stamina for today.");
                 }
