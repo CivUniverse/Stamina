@@ -40,7 +40,7 @@ public class CommandHandler implements CommandExecutor {
             if (args[0].equalsIgnoreCase("claim")) {
                 if (claimMan.checkClaim(player, (int) date.getTime())) {
                     commandSender.sendMessage(ChatColor.AQUA + "You successfully claimed your Stamina for today.");
-                    manager.givePlayerStamina(player, 2);
+                    manager.givePlayerStamina(player, Stamina.getDailyStam());
                     claimMan.recordClaim(player, (int) date.getTime());
                 } else {
                     commandSender.sendMessage(ChatColor.RED + "You already claimed your stamina for today.");
@@ -56,6 +56,11 @@ public class CommandHandler implements CommandExecutor {
             int bal = manager.getPlayerStamina(player);
             if (bal < 10) {
                 commandSender.sendMessage(ChatColor.RED + "Your account balance needs to be more than 10 to withdraw Stamina.");
+                return true;
+            }
+
+            if(Integer.parseInt(args[0]) < 0) {
+                commandSender.sendMessage(ChatColor.RED + "You cannot use negative numbers...");
                 return true;
             }
 

@@ -15,15 +15,19 @@ public class Stamina extends JavaPlugin {
     private static ClaimManager claimManager;
     private static Plugin stamina;
 
+    private static Integer dailyStam;
+
     private File stamManagerFile = new File("./plugins/Stamina/stamMan.tsv");
     private File claimManagerFile = new File("./plugins/Stamina/claimMan.tsv");
 
     @Override
     public void onEnable() {
         super.onEnable();
+        this.saveConfig();
         stamina = this;
         staminaManager = new StaminaManager();
         claimManager = new ClaimManager();
+        dailyStam = this.getConfig().getInt("dailyStam");
         try {
             loadDB();
         } catch (IOException | ClassNotFoundException e) {
@@ -36,6 +40,7 @@ public class Stamina extends JavaPlugin {
     @Override
     public void onDisable() {
         super.onDisable();
+        this.saveConfig();
         try {
             saveDB();
         } catch (IOException e) {
@@ -54,6 +59,8 @@ public class Stamina extends JavaPlugin {
     public static ClaimManager getClaimManager() { return claimManager; }
 
     public static Plugin getPlugin() { return stamina; }
+
+    public static Integer getDailyStam() { return dailyStam; }
 
     private void saveDB() throws IOException {
         FileOutputStream f = new FileOutputStream(stamManagerFile);
